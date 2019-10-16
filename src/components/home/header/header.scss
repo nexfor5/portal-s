@@ -1,0 +1,30 @@
+#cover-container {
+    position: relative;
+    height: 70vh;
+    background-image: url("../../../assets/images/cover.jpg");
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+
+    nav.navbar {
+        background: rgba(255, 255, 255, 0.5) !important;
+
+        &.solid {
+            background: #fff !important;
+        }
+    }
+
+    div.header-container {
+        height: 100%;
+        padding-top: 56px;
+        margin-top: -56px;
+
+        >div.row {
+            height: 100%;
+
+            .login-container-outter {
+                background: rgba(255, 255, 255, 0.5);
+            }
+        }
+    }
+}
