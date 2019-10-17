@@ -1,20 +1,17 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import {mount, shallow} from 'enzyme';
+import {shallow} from 'enzyme';
 import Header from './header-view';
 
 describe("Header component", () => {
+  let component;
+
   test('renders without crashing', () => {
-    const div = document.createElement('div');
-    // ReactDOM.render(<Header scroll={0} />, div);
-    ReactDOM.unmountComponentAtNode(div);
+    component = shallow(<Header scroll={0} />);
+    expect(component.exists()).toBeTruthy();
   });
 
-  //Shallow
-  const shallowed = shallow(<Header scroll={0} />);
-
   test(("Cover container has id for background"), () => {
-    expect(shallowed.find('#cover-container').exists()).toBeTruthy();
+    expect(component.find('#cover-container').exists()).toBeTruthy();
   });
 
   //Mount

@@ -1,33 +1,27 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import {mount, shallow} from 'enzyme';
+import {shallow} from 'enzyme';
 import Login from './login-view';
 
 describe("Login component", () => {
+  let component;
+
   test('renders without crashing', () => {
-    const div = document.createElement('div');
-    // ReactDOM.render(<Login />, div);
-    ReactDOM.unmountComponentAtNode(div);
+    component = shallow(<Login />);
+    expect(component.exists()).toBeTruthy();
   });
 
-  //Shallow
-  const shallowed = shallow(<Login />);
-
   test(("Container has id"), () => {
-    expect(shallowed.find('#login-container').exists()).toBeTruthy();
+    expect(component.find('#login-container').exists()).toBeTruthy();
   });
 
   test(("Titles"), () => {
-    expect(shallowed.find('h3').text()).toBe('Ingresar al sistema');
+    expect(component.find('h3').text()).toBe('Ingresar al sistema');
   });
 
-  //Mount
-  // const mounted = mount(<Login />);
-
-  // test(("inputs"), () => {
-  //   expect(mounted.find('input#email').exists()).toBeTruthy();
-  //   expect(mounted.find('input#password').exists()).toBeTruthy();
-  // });
+  test(("inputs"), () => {
+    expect(component.find('Form').exists()).toBeTruthy();
+    expect(component.find('input#password').exists()).toBeTruthy();
+  });
 
   // test(("login action button"), () => {
   //   const button = mounted.find('button.btn-primary');

@@ -1,9 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import App from './app';
+import {shallow} from 'enzyme';
 
-it('renders without crashing', () => {
-  // const div = document.createElement('div');
-  // ReactDOM.render(<App />, div);
-  // ReactDOM.unmountComponentAtNode(div);
+let component;
+
+test('renders without crashing', () => {
+  component = shallow(<App />);
+  expect(component.exists()).toBeTruthy();
 });
