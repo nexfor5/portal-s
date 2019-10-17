@@ -11,21 +11,35 @@ function Header(params) {
 
   return (
     <header id="cover-container">
-      <Navbar sticky="top" expand="lg" variant="light" bg="light" className={!scroll && 'solid'}>
+      <Navbar
+        fixed="top"
+        expand="lg"
+        variant="light"
+        bg="light"
+        className={`shadow-sm${!scroll ? ' solid' : ''}`}
+      >
         <Container>
           <Navbar.Brand href="/">Portal - S</Navbar.Brand>
         </Container>
       </Navbar>
       <Container className="header-container">
         <Row className="d-flex align-items-stretch">
-          <Col lg={4} className="d-flex align-items-center justify-content-center">
-            <div className="login-container-outter w-100 p-5">
+          <Col
+            lg={4}
+            className="d-flex align-items-center justify-content-center"
+          >
+            <div className="login-container-outter shadow-sm w-100 p-5">
               <Login></Login>
             </div>
           </Col>
-          <Col lg={8}>
+          <Col
+            lg={8}
+            className="d-flex align-items-center justify-content-end"
+          >
             <div className="covertext-container-outter">
-              <h1 className="text-center">Texto promocional</h1>
+              <h1 className="text-light text-center">
+                Tus reportes...<br />Al instante
+              </h1>
             </div>
           </Col>
         </Row>

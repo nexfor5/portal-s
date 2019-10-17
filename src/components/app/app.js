@@ -1,8 +1,7 @@
 import React from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import {library} from '@fortawesome/fontawesome-svg-core';
-import {faChartBar, faDatabase, faFile} from '@fortawesome/free-solid-svg-icons';
 import Home from '../home';
+import Dashboard from '../dashboard';
 import './app.scss';
 
 function App() {
@@ -12,11 +11,12 @@ function App() {
         <Route exact path='/'>
           <Home />
         </Route>
+        <Route exact path='/dashboard'>
+          <Dashboard />
+        </Route>
       </Switch>
     </Router>
   );
 }
-
-library.add(faChartBar, faDatabase, faFile);
 
 export default App;

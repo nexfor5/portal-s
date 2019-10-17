@@ -4,7 +4,9 @@ import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './components/app';
 import * as serviceWorker from './serviceWorker';
+import registerFaIcons from './utils/register-fa-icons';
 
+registerFaIcons();
 ReactDOM.render(<App />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
