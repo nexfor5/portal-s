@@ -7,7 +7,7 @@ import './header.scss';
 import Login from '../../login/login-view';
 
 function Header(params) {
-  const {scroll} = params;
+  const {scroll, doLogIn} = params;
 
   return (
     <header id="cover-container">
@@ -29,7 +29,7 @@ function Header(params) {
             className="d-flex align-items-center justify-content-center"
           >
             <div className="login-container-outter shadow-sm w-100 p-5">
-              <Login></Login>
+              <Login doLogIn={doLogIn}></Login>
             </div>
           </Col>
           <Col

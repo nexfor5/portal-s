@@ -1,0 +1,46 @@
+.main-container {
+    padding-left: 0;
+    padding-right: 0;
+
+    .side-nav {
+        background: var(--dark);
+
+        .brand {
+            height: 56px;
+            padding-left: 16px;
+        }
+
+        >.nav {
+            a.nav-link {
+                border-bottom: 1px solid var(--gray);
+                color: var(--light);
+                transition: .1s linear all;
+
+                &:first-child {
+                    border-top: 1px solid var(--gray);
+                }
+
+                &:hover {
+                    background: var(--gray);
+                }
+
+                &.active {
+                    background: var(--gray);
+                }
+            }
+        }
+    }
+
+    .navbar {
+        .user-info {
+            margin: -8px -16px;
+            padding: 8px 16px;
+            background: var(--gray);
+        }
+    }
+
+    .content-container {
+        height: 2000px;
+        padding: 20px;
+    }
+}

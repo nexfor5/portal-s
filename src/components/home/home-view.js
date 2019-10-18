@@ -2,12 +2,14 @@ import React, {useEffect, useState} from 'react';
 import Header from './header';
 import './home.scss';
 import Container from 'react-bootstrap/Container';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import {useHistory} from 'react-router-dom';
 
 function Home() {
   const [scroll, setScroll] = useState(window.scrollY < 100);
+  const history = useHistory();
 
   useEffect(() => {
     const onScroll = () => {
@@ -18,9 +20,14 @@ function Home() {
     return () => window.removeEventListener('scroll', onScroll);
   });
 
+  const doLogIn = (data) => {
+    console.log(data);
+    history.push('/dashboard/default');
+  };
+
   return (
     <div>
-      <Header scroll={scroll} />
+      <Header scroll={scroll} doLogIn={doLogIn} />
       <Container>
         <Row>
           <Col className="text-center pt-5 pb-5">
