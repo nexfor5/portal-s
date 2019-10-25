@@ -8,8 +8,9 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import Finance from './finance';
+import Reports from './reports';
 import DashboardView from './dashboard-view';
+import {menus} from '../../utils/menu-parser';
 
 function DashboardContainer() {
   const {path, url} = useRouteMatch();
@@ -32,11 +33,9 @@ function DashboardContainer() {
           </div>
           <Nav className="flex-column border-right border-secondary w-100">
             <NavLink className="nav-link" to={`${url}/default`}>Dashboard</NavLink>
-            <NavLink className="nav-link" to={`${url}/finance`}>Finanzas</NavLink>
-            <NavLink className="nav-link" to={`${url}/comercial`}>Comercial</NavLink>
-            <NavLink className="nav-link" to={`${url}/operation`}>Operaciones</NavLink>
-            <NavLink className="nav-link" to={`${url}/business`}>Gestión de negocios</NavLink>
-            <NavLink className="nav-link" to={`${url}/rrhh`}>RR.HH.</NavLink>
+            {menus.map((menu) => (
+              <NavLink key={menu.menuId} className="nav-link" to={`${url}/${menu.menuId}`}>{menu.title}</NavLink>
+            ))}
           </Nav>
         </Col>
         <Col xl={10} lg={9}>
@@ -62,9 +61,11 @@ function DashboardContainer() {
               <Route exact path={`${path}/default`}>
                 <DashboardView navigateTo={navigateTo}></DashboardView>
               </Route>
-              <Route path={`${path}/finance`}>
-                <Finance navigateTo={navigateTo} />
-              </Route>
+              {menus.map((menu) => (
+                <Route key={menu.menuId} path={`${path}/${menu.menuId}`}>
+                  <Reports navigateTo={navigateTo} />
+                </Route>
+              ))}
             </Switch>
           </div>
         </Col>

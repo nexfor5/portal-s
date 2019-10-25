@@ -1,5 +1,5 @@
 import React from 'react';
-import FinanceDetail from './finance-detail-view';
+import FinanceDetail from './report-detail-view';
 import {render} from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import {MemoryRouter} from 'react-router-dom';

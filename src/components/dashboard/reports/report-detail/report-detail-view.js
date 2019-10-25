@@ -1,7 +1,7 @@
 import React from 'react';
-import './finance-detail.scss';
+import './report-detail.scss';
 import {useParams} from 'react-router-dom';
-import findReport from '../../../../utils/report-name-parser';
+import {findReport} from '../../../../utils/report-parser';
 
 function FinanceDetail(props) {
   const {reportId} = useParams();
