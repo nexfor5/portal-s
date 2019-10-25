@@ -1,72 +1,85 @@
 import React from 'react';
 import './dashboard.scss';
-import Container from 'react-bootstrap/Container';
-import {Route, Switch, NavLink, Link, useRouteMatch, useHistory} from 'react-router-dom';
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
+import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
+import ToggleButton from 'react-bootstrap/ToggleButton';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Image from 'react-bootstrap/Image';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import Default from './default';
-import Finance from './finance';
+import CardResume from './card-resume';
+import Chart from 'react-google-charts';
 
-function Dashboard() {
-  const {path, url} = useRouteMatch();
-  const history = useHistory();
-
-  const navigateTo = (page) => {
-    history.push(page);
-  };
-
+function DashboardView(props) {
   return (
-    <Container fluid className="main-container">
-      <Row className="d-flex justify-content-between" noGutters>
-        <Col xl={2} lg={3} className="d-flex align-items-stretch flex-column side-nav">
-          <div className="brand d-flex align-items-center border-secondary border-bottom border-right">
-            <Link to={`${url}/default`} className="navbar-brand text-light">Portal - S</Link>
-          </div>
-          <div className="organization text-center p-5">
-            <h3 className="text-light p-1">Empresa A</h3>
-            <Image className="shadow-sm" src="https://via.placeholder.com/150" rounded />
-          </div>
-          <Nav className="flex-column border-right border-secondary w-100">
-            <NavLink className="nav-link" to={`${url}/default`}>Dashboard</NavLink>
-            <NavLink className="nav-link" to={`${url}/finance`}>Finanzas</NavLink>
-          </Nav>
+    <div>
+      <div className="default-site d-flex align-items-center justify-content-between">
+        <h1 data-testid="dashboard-title">Dashboard</h1>
+        <ToggleButtonGroup type="radio" name="options" defaultValue={1} className="shadow">
+          <ToggleButton value={1} variant="dark">Hoy</ToggleButton>
+          <ToggleButton value={2} variant="dark">7 días</ToggleButton>
+          <ToggleButton value={3} variant="dark">Último mes</ToggleButton>
+        </ToggleButtonGroup>
+      </div>
+      <Row className="pt-5">
+        <Col>
+          <CardResume name="Ingresos" value="$200.000" icon="file-import" color="success" navigateTo={props.navigateTo} to="ganancias"></CardResume>
         </Col>
-        <Col xl={10} lg={9}>
-          <Navbar
-            expand="lg"
-            variant="dark"
-            bg="dark"
-            className="shadow-sm justify-content-between"
-            data-testid="navbar"
-          >
-            <div>
-              <FontAwesomeIcon icon="chart-bar" className="text-light" />
-            </div>
-            <div className="user-info">
-              <Image className="m-1 mr-3" src="https://via.placeholder.com/24" roundedCircle />
-              <Navbar.Text>
-                <a href="#login">Nombre Apellido</a>
-              </Navbar.Text>
-            </div>
-          </Navbar>
-          <div className="content-container">
-            <Switch>
-              <Route exact path={`${path}/default`}>
-                <Default navigateTo={navigateTo} />
-              </Route>
-              <Route exact path={`${path}/finance`}>
-                <Finance />
-              </Route>
-            </Switch>
-          </div>
+        <Col>
+          <CardResume name="Egresos" value="$100.000" icon="file-export" color="danger" navigateTo={props.navigateTo} to="gastos"></CardResume>
+        </Col>
+        <Col>
+          <CardResume name="Ventas" value="10" icon="handshake" color="primary" navigateTo={props.navigateTo} to="ventas"></CardResume>
+        </Col>
+        <Col>
+          <CardResume name="Compras" value="20" icon="shopping-cart" color="warning" navigateTo={props.navigateTo} to="compras"></CardResume>
         </Col>
       </Row>
-    </Container>
+      <Row className="pt-5">
+        <Col lg={6}>
+          <Chart
+            width={'100%'}
+            height={'300px'}
+            chartType="BarChart"
+            loader={<div>Cargando...</div>}
+            data={[
+              ['Categoría', 'Ventas', {role: 'style'}],
+              ['Peluches', 100000, '#28a745'],
+              ['Comida', 800000, '#dc3545'],
+              ['Ropa', 350000, '#007bff'],
+              ['Pescados', 234000, '#ffc107'],
+            ]}
+            options={{
+              title: 'Ventas por categorías',
+              bar: {groupWidth: '95%'},
+              legend: {position: 'none'},
+            }}
+            rootProps={{'className': 'shadow-sm'}}
+          />
+        </Col>
+        <Col lg={6}>
+          <Chart
+            width={'100%'}
+            height={'300px'}
+            chartType="AreaChart"
+            loader={<div>Cargando...</div>}
+            data={[
+              ['Hora', 'Ingresos', 'Egresos'],
+              ['08 - 10', 200000, 300000],
+              ['10 - 12', 234000, 310000],
+              ['12 - 14', 434000, 320000],
+              ['14 - 16', 500000, 329000],
+              ['16 - 18', 700000, 350000],
+            ]}
+            options={{
+              title: 'Performance de la empresa',
+              hAxis: {title: 'Hora', titleTextStyle: {color: '#333'}},
+              vAxis: {minValue: 0},
+              chartArea: {width: '60%', height: '70%'},
+            }}
+            rootProps={{'className': 'shadow-sm'}}
+          />
+        </Col>
+      </Row>
+    </div>
   );
 }
 
-export default Dashboard;
+export default DashboardView;

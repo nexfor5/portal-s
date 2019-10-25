@@ -1,1 +1,1 @@
-export {default} from './finance-view';
+export {default} from './finance-container';
