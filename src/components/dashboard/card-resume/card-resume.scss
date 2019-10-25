@@ -1,0 +1,46 @@
+@import "~bootstrap/scss/_functions.scss";
+@import "~bootstrap/scss/variables";
+
+.card-resume {
+    background: #ffffff;
+    position: relative;
+
+    p,
+    h1,
+    hr {
+        margin-bottom: 0px;
+    }
+
+    button.btn-link {
+        color: var(--grey);
+    }
+
+    .icon {
+        position: absolute;
+        top: -25px;
+        height: 50px;
+        width: 50px;
+        text-align: center;
+        background: #000;
+
+        &.icon-primary {
+            background: linear-gradient(to right, $primary, darken($primary, 10%));
+        }
+
+        &.icon-secondary {
+            background: linear-gradient(to right, $secondary, darken($secondary, 10%));
+        }
+
+        &.icon-success {
+            background: linear-gradient(to right, $success, darken($success, 10%));
+        }
+
+        &.icon-warning {
+            background: linear-gradient(to right, $warning, darken($warning, 10%));
+        }
+
+        &.icon-danger {
+            background: linear-gradient(to right, $danger, darken($danger, 10%));
+        }
+    }
+}

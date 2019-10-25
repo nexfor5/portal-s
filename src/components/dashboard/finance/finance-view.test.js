@@ -6,9 +6,13 @@ import '@testing-library/jest-dom/extend-expect';
 describe("Dashboard site", () => {
   const {getByText} = render(<Finance />);
 
-  const title = getByText('Finanzas');
+  const allButton = getByText('Todos');
 
   test('Title', () => {
-    expect(title).toBeVisible();
+    expect(getByText('Finanzas')).toBeVisible();
+  });
+
+  test('Filter buttons', () => {
+    expect(allButton).toBeEnabled();
   });
 });

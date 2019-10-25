@@ -1,7 +1,7 @@
 import React from 'react';
 import './dashboard.scss';
 import Container from 'react-bootstrap/Container';
-import {Route, Switch, NavLink, Link, useRouteMatch} from 'react-router-dom';
+import {Route, Switch, NavLink, Link, useRouteMatch, useHistory} from 'react-router-dom';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Row from 'react-bootstrap/Row';
@@ -13,6 +13,11 @@ import Finance from './finance';
 
 function Dashboard() {
   const {path, url} = useRouteMatch();
+  const history = useHistory();
+
+  const navigateTo = (page) => {
+    history.push(page);
+  };
 
   return (
     <Container fluid className="main-container">
@@ -23,7 +28,7 @@ function Dashboard() {
           </div>
           <div className="organization text-center p-5">
             <h3 className="text-light p-1">Empresa A</h3>
-            <Image src="https://via.placeholder.com/150" rounded />
+            <Image className="shadow-sm" src="https://via.placeholder.com/150" rounded />
           </div>
           <Nav className="flex-column border-right border-secondary w-100">
             <NavLink className="nav-link" to={`${url}/default`}>Dashboard</NavLink>
@@ -51,7 +56,7 @@ function Dashboard() {
           <div className="content-container">
             <Switch>
               <Route exact path={`${path}/default`}>
-                <Default />
+                <Default navigateTo={navigateTo} />
               </Route>
               <Route exact path={`${path}/finance`}>
                 <Finance />
