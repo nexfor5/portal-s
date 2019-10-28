@@ -17,14 +17,21 @@ function ReportsView(params) {
       <h1>{params.menu.title}</h1>
       <div>
         <Button variant="success" className="mr-4 shadow-sm">Todos</Button>
-        <Button variant="secondary" className="mr-4 shadow-sm">Contabilidad</Button>
-        <Button variant="secondary" className="mr-4 shadow-sm">Cliente</Button>
-        <Button variant="secondary" className="mr-4 shadow-sm">Cobranzas</Button>
+        {params.menu.tags.map((tag) => (
+          <Button
+            variant="secondary"
+            data-testid={`filter-${tag}`}
+            className="mr-4 shadow-sm"
+            key={tag}
+          >
+            {tag}
+          </Button>
+        ))}
       </div>
       <Row>
-        {reports.map((item) => (
-          <Col lg={4} xl={3} className="mt-5" key={item.reportId}>
-            <CardReport {...item}></CardReport>
+        {reports.map((report) => (
+          <Col lg={4} xl={3} className="mt-5" key={report.reportId}>
+            <CardReport {...report}></CardReport>
           </Col>
         ))}
       </Row>

@@ -39,7 +39,15 @@ export const reports = [
         menuId: 'finance',
         tags: ['Contabilidad', 'Cliente'],
     },
+    {
+        image: 'https://via.placeholder.com/320x200',
+        title: 'Reporte 6',
+        reportId: 'report-6',
+        description: 'Descripción del reporte.',
+        menuId: 'comercial',
+        tags: ['Gastos'],
+    },
 ];
 
-export const findReport = (name) => reports.find((r) => r.name === name || r.reportId === name);
+export const findReport = (name) => reports.find((r) => r.title === name || r.reportId === name);
 export const filterReportByMenuId = (menuId) => reports.filter((r) => r.menuId === menuId);

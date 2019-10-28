@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 
 function CardReport(props) {
   const handleClick = () => {
-    props.navigateTo(`finance/${props.reportId}`);
+    props.navigateTo(`${props.menuId}/${props.reportId}`);
   };
 
   return (

@@ -1,17 +1,28 @@
 import React from 'react';
-import FinanceDetail from './report-detail-view';
+import ReportDetail from './report-detail-view';
 import {render} from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import {MemoryRouter} from 'react-router-dom';
+import {Route, MemoryRouter} from 'react-router-dom';
 
-describe("Finance detail site", () => {
-  const {getByText} = render(
-    <MemoryRouter initialEntries={["/dashboard/finance/report-1"]}>
-      <FinanceDetail />
+describe("Report detail site", () => {
+  const {getByText, getByTestId} = render(
+    <MemoryRouter initialEntries={['/dashboard/comercial/report-6']}>
+      <Route path='/dashboard/comercial/:reportId'>
+        <ReportDetail />
+      </Route>
     </MemoryRouter>
   );
 
+  const title = getByTestId('report-name');
+  const tabs = getByTestId('report-tabs');
+
   test('Title', () => {
-    expect(getByText('Reporte 1')).toBeInTheDocument();
+    expect(title).toBeVisible();
+    expect(title).toHaveTextContent('Comercial');
+    expect(getByText('Reporte 6')).toBeVisible();
+  });
+
+  test('Tabs', () => {
+    expect(tabs).toBeVisible();
   });
 });
