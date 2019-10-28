@@ -13,16 +13,21 @@ describe("Report detail site", () => {
     </MemoryRouter>
   );
 
-  const title = getByTestId('report-name');
+  const title = getByTestId('report-category');
+  const reportName = getByText('Reporte 6');
   const tabs = getByTestId('report-tabs');
+  const dataTab = getByText('Datos');
+  const staticsTab = getByText('Estadísticas');
 
   test('Title', () => {
     expect(title).toBeVisible();
     expect(title).toHaveTextContent('Comercial');
-    expect(getByText('Reporte 6')).toBeVisible();
+    expect(reportName).toBeVisible();
   });
 
   test('Tabs', () => {
     expect(tabs).toBeVisible();
+    expect(dataTab).toBeVisible();
+    expect(staticsTab).toBeVisible();
   });
 });

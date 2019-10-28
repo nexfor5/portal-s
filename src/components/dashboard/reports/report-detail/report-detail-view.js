@@ -14,9 +14,7 @@ function ReportDetail() {
   return (
     <div>
       <h1>
-        <span data-testid="report-name">{menu.title}</span>
-        -
-        <small className="text-muted">{report.title}</small>
+        <span data-testid="report-category">{menu.title}</span> - <small className="text-muted">{report.title}</small>
       </h1>
       <Tabs defaultActiveKey="data" id="report-tabs" data-testid="report-tabs">
         <Tab eventKey="data" title="Datos">
