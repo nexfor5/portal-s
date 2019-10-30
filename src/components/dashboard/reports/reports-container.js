@@ -16,7 +16,7 @@ function ReportsContainer(props) {
           <ReportsView navigateTo={props.navigateTo} menu={menu}></ReportsView>
         </Route>
         <Route exact path={`${path}/:reportId`}>
-          <ReportDetail></ReportDetail>
+          <ReportDetail navigateTo={props.navigateTo}></ReportDetail>
         </Route>
       </Switch>
     </div>
